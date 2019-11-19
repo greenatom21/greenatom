@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <h1>{{ _('%(username)s', username=current_user.username) }}</h1>
+    <!-- Верхние 4 плашки - разместить инфу -->
+    <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">content_copy</i>
+                  </div>
+                  <p class="card-category">Сотрудников</p>
+                  <h3 class="card-title">4353
+                  </h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons text-danger">warning</i>
+                    <a href="#">Описание</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">poll</i>
+                  </div>
+                  <p class="card-category">Работоспособные</p>
+                  <h3 class="card-title">4284</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">date_range</i> Описание
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">info_outline</i>
+                  </div>
+                  <p class="card-category">Выгорание</p>
+                  <h3 class="card-title">69</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">local_offer</i> Описание
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-info card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">person</i>
+                  </div>
+                  <p class="card-category">Добавлено</p>
+                  <h3 class="card-title">+0</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">update</i> Описание
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Конец верхних плашек -->
+
+          <!-- Графики в трех окнах -->
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card card-chart">
+                <div class="card-header card-header-success">
+                  <div class="ct-chart" id="dailySalesChart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Выгорание(кол. чел)/Возраст</h4>
+                  <p class="card-category">Включает всех пользователей с подтвержденным выгоранием</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> обновлено  minutes ago
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-chart">
+                <div class="card-header card-header-warning">
+                  <div class="ct-chart" id="websiteViewsChart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Доход(тыс)/Возраст</h4>
+                  <p class="card-category">Средний доход сотрудника за год</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> обновлено  days ago
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-chart">
+                <div class="card-header card-header-danger">
+                  <div class="ct-chart" id="completedTasksChart"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">Выгорание(кол. чел)/Карьерный путь (лет)</h4>
+                  <p class="card-category">Включает всех пользователей с подтвержденным выгоранием</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> обновлено  days ago
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    {% if form %}
+    {{ wtf.quick_form(form) }}
+    <br>
+    {% endif %}
+    {% for post in posts %}
+        {% include '_post.html' %}
+    {% endfor %}
+    <div class="btn-group">
+                <a href="{{ prev_url or '#' }}" class="btn btn-success btn-round">
+                    <span aria-hidden="true">&larr;</span>
+                </a>
+                <a href="{{ next_url or '#' }}" class="btn btn-success btn-round">
+                <span aria-hidden="true">&rarr;</span>
+                </a>
+    </div>
+{% endblock %}

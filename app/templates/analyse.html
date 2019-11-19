@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <h1>{{ _('Заполните поля - Linear Regression') }}</h1>
+    <div>
+  <form action="/analyse_result" method="POST">
+    <div class="col-md-3">
+    <div class="form-group">
+    <label for="Age">Возраст</label>
+    <select class="form-control" type="number" id="Age" name="Age">
+      <option value="1">До 30 лет</option>
+      <option value="2">30-40 лет</option>
+      <option value="3">40-50 лет</option>
+      <option value="4">50+ лет</option>
+    </select>
+    </div>
+    </div>
+
+    <div class="col-md-3">
+    <div class="form-group">
+    <label for="BusinessTravel">Деловые поездки</label>
+    <select class="form-control" id="BusinessTravel" name="BusinessTravel">
+      <option value="0">Редко</option>
+      <option value="1">Часто</option>
+      <option value="2">Не путешествует</option>
+    </select>
+    </div>
+    </div>
+
+    <div class="col-md-3">
+    <div class="form-group">
+    <label for="Department">Департамент</label>
+    <select class="form-control" id="Department" name="Department">
+      <option value="0">Продажи</option>
+      <option value="1">Разработка и исследования</option>
+      <option value="2">Управление</option>
+    </select>
+    </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+      <label class="bmd-label-floating" for="DistanceFromHome">Расстояние до дома (км)</label>
+      <input class="form-control" type="number" id="DistanceFromHome" name="DistanceFromHome">
+      </div>
+    </div>
+
+    <div class="col-md-3">
+    <div class="form-group">
+    <label for="Education">Образование</label>
+    <select class="form-control" id="Education" name="Education">
+      <option value="1">Школа</option>
+      <option value="2">Училище</option>
+      <option value="3">Бакалавр</option>
+      <option value="4">Магистр</option>
+      <option value="5">Доктор</option>
+    </select>
+    </div>
+    </div>
+
+    <div class="col-md-3">
+    <div class="form-group">
+    <label for="EducationField">Область наук</label>
+    <select class="form-control" id="EducationField" name="EducationField">
+      <option value="0">Социальные науки</option>
+      <option value="1">Другое</option>
+      <option value="2">Медицина</option>
+      <option value="3">Маркетинг</option>
+      <option value="4">Технические науки</option>
+      <option value="5">Управление</option>
+    </select>
+    </div>
+    </div>
+
+    <div class="col-md-3">
+    <div class="form-group">
+    <label for="Gender">Пол</label>
+    <select class="form-control" id="Gender" name="Gender">
+      <option value="0">Жен</option>
+      <option value="1">Муж</option>
+    </select>
+    </div>
+    </div>
+    
+    <div class="col-md-3">
+    <div class="form-group">
+    <label for="JobLevel">Уровень</label>
+    <select class="form-control" id="JobLevel" name="JobLevel">
+      <option value="1">Стажер</option>
+      <option value="2">Начинающий</option>
+      <option value="3">Средний</option>
+      <option value="4">Специалист</option>
+      <option value="5">Профессионал</option>
+    </select>
+    </div>
+    </div>
+
+    <div class="col-md-3">
+    <div class="form-group">
+    <label for="JobRole">Должность</label>
+    <select class="form-control" id="JobRole" name="JobRole">
+      <option value="0">Представитель</option>
+      <option value="1">Ученый</option>
+      <option value="2">Продажник</option>
+      <option value="3">Управленец</option>
+      <option value="4">Заведующий по научной работе</option>
+      <option value="5">Лаборант</option>
+      <option value="6">Директор производства</option>
+      <option value="7">Специалист по планированию</option>
+      <option value="8">Менеджер</option>
+    </select>
+    </div>
+    </div>
+
+    <div class="col-md-3">
+    <div class="form-group">
+    <label for="MaritalStatus">Семейное положение</label>
+    <select class="form-control" id="MaritalStatus" name="MaritalStatus">
+      <option value="0">Женат</option>
+      <option value="1">Одинок</option>
+      <option value="2">Разведен</option>
+    </select>
+    </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+      <label class="bmd-label-floating" for="MonthlyIncome">Доход за месяц</label>
+      <input class="form-control" type="number" id="MonthlyIncome" name="MonthlyIncome">
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+      <label class="bmd-label-floating" for="NumCompaniesWorked">Число предыдущих мест работы</label>
+      <input class="form-control" type="number" id="NumCompaniesWorked" name="NumCompaniesWorked">
+      </div>
+    </div>
+
+    <div class="col-md-3">
+    <div class="form-group">
+    <label for="Over18">Старше 18</label>
+    <select class="form-control" id="Over18" name="Over18">
+      <option value="0">Да</option>
+      <option value="1">Нет</option>
+    </select>
+    </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+      <label class="bmd-label-floating" for="PercentSalaryHike">Рост ЗП в процентах за год</label>
+      <input class="form-control" type="number" id="PercentSalaryHike" name="PercentSalaryHike">
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+      <label class="bmd-label-floating" for="StockOptionLevel">Уровень опциона на акции (0 - 3)</label>
+      <input class="form-control" type="number" id="StockOptionLevel" name="StockOptionLevel">
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+      <label class="bmd-label-floating" for="TotalWorkingYears">Число отработанных лет</label>
+      <input class="form-control" type="number" id="TotalWorkingYears" name="TotalWorkingYears">
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+      <label class="bmd-label-floating" for="TrainingTimesLastYear">Число повышений квалификации</label>
+      <input class="form-control" type="number" id="TrainingTimesLastYear" name="TrainingTimesLastYear">
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+      <label class="bmd-label-floating" for="YearsAtCompany">Лет в компании</label>
+      <input class="form-control" type="number" id="YearsAtCompany" name="YearsAtCompany">
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+      <label class="bmd-label-floating" for="YearsSinceLastPromotion">Лет с прошлого повышения</label>
+      <input class="form-control" type="number" id="YearsSinceLastPromotion" name="YearsSinceLastPromotion">
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="form-group">
+      <label class="bmd-label-floating" for="YearsWithCurrManager">Лет с текущим руководителем</label>
+      <input class="form-control" type="number" id="YearsWithCurrManager" name="YearsWithCurrManager">
+      </div>
+    </div>
+
+    <input class="btn btn-success" type="submit" value="Анализ">
+  </form>
+</div>
+{% endblock %}
